@@ -1,0 +1,37 @@
+import random as rd
+
+palabras = ["pala", "pico", "marea", "maestro"]
+s = rd.randint(0, len(palabras)-1)
+letras = list()
+palabra = list(palabras[s])
+
+print(palabra)
+aciertos = ["-"] * len(palabra)
+
+c = 5
+print(aciertos)
+while (c > 0 and aciertos != palabra):
+    correcto = False
+    p = input("\nIntroduzca una letra: ")
+    if len(p) == 1 and p not in letras:
+        for i in range(len(palabra)):
+            if p == palabra[i]:
+                aciertos[i] = p
+                correcto = True
+    else:
+        pList = list(p)
+        if list(p) == palabra:
+            correcto = True
+            for i in range(len(palabra)):
+                aciertos[i] = pList[i]
+                correcto = True
+    if not correcto:
+        c -= 1
+        letras.append(p)
+    print(f"Letras/Palabras usadas: {letras} y te quedan {c} vidas")
+    print(aciertos)
+
+if c > 0:
+    print("Felicidades, has acertado")
+else:
+    print("Has perdido")
